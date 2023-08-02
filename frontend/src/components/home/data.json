@@ -1,0 +1,41 @@
+[
+  {
+    "postId": 1,
+    "username": "mintmin",
+    "profile_image": "./images/jisu.jpeg",
+    "photos": "./images/jisu.jpeg",
+    "like_profile_image": [
+      "./images/jisu.jpeg",
+      "./images/gd.jpeg",
+      "./images/jo.jpeg"
+    ],
+    "content": "지수님의 신곡을 응원합니다.",
+    "comments": 20
+  },
+  {
+    "postId": 2,
+    "username": "choi_zero",
+    "profile_image": "./images/gd.jpeg",
+    "photos": "./images/gd.jpeg",
+    "like_profile_image": [
+      "./images/gd.jpeg",
+      "./images/jo.jpeg",
+      "./images/jisu.jpeg"
+    ],
+    "content": "역시 GD",
+    "comments": 5
+  },
+  {
+    "postId": 3,
+    "username": "Jhon_Ahn",
+    "profile_image": "./images/jo.jpeg",
+    "photos": "./images/jo.jpeg",
+    "like_profile_image": [
+      "./images/jo.jpeg",
+      "./images/jisu.jpeg",
+      "./images/gd.jpeg"
+    ],
+    "content": "조인성의 MBTI는 INFJ라고 하네요.",
+    "comments": 200
+  }
+]
