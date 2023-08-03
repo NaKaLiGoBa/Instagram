@@ -10,13 +10,16 @@ import { TbLocation } from "react-icons/tb";
 import { BiBookmark } from "react-icons/bi";
 
 import data from './data.json';
+import FeedCheck from './FeedCheck';
 
 function Home() {
   const [feedList, setFeedList] = useState(data);
+  const [page, setPage] = useState(0);
   const { ref, inView } = useInView();
 
   useEffect(() => {
     if (inView) {
+      // setPage(page + 1)
       var timeCurrent = setTimeout(() =>
         handleOnLimitScroll()
         , 2000);
@@ -116,8 +119,14 @@ function Home() {
             );
           })
         }
+        {/* {
+          page === 0 && (
+            <FeedCheck />
+          )} */}
       </FeedWrap>
+
       <FeedLoadingBox ref={ref}>loading</FeedLoadingBox>
+
     </Container>
   );
 };
@@ -125,10 +134,10 @@ function Home() {
 export default Home;
 
 const Container = styled.div`
-  width: 81%;
+  width: 100%;
   display: flex;
   flex-direction: column;
-  align-items: flex-end;
+  margin-top: 30px;
 
   input:focus { outline: none; }
 `;
@@ -137,7 +146,7 @@ const FeedWrap = styled.div`
   width: 100%;
   display: flex;
   flex-direction: column;
-  align-items: flex-end;
+  align-items: center;
 `;
 
 const FeedListBox = styled.div`
@@ -149,7 +158,7 @@ const FeedListBox = styled.div`
 
 const FeedListTopBox = styled.div`
   width: 99%;
-  height: 65px;
+  height: 70px;
   display: flex;
   align-items: center;
 `;
@@ -163,8 +172,8 @@ const FeedListTopProfileBox = styled.div`
 `;
 
 const FeedListTopProfile = styled.img`
-  width: 80%;
-  height: 50%;
+  width: 38px;
+  height: 38px;
   border-radius: 50%;
 `;
 
@@ -322,7 +331,7 @@ const FeedBottomCommentInput = styled.input`
 `;
 
 const FeedLoadingBox = styled.div`
-  width: 60%;
+  width: 468px;
   height: 30px;
   display: flex;
   justify-content: center;

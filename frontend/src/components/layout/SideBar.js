@@ -89,7 +89,7 @@ function SideBar() {
 export default SideBar;
 
 const Container = styled.nav`
-  width: 17.7%;
+  width: 17.6%;
   height: 100%;
   display: flex;
   justify-content: center;

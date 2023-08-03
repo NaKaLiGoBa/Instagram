@@ -4,15 +4,19 @@ import { styled } from 'styled-components';
 import Home from '../../components/home/Home';
 import SideBar from '../../components/layout/SideBar';
 import StoryList from '../../components/home/StoryList';
+import Recommend from '../../components/home/Recommend';
 
 function HomePage() {
   return (
     <Container>
       <SideBar />
-      <HomeContent>
-        <StoryList />
-        <Home />
-      </HomeContent>
+      <HomeWrap>
+        <FeedContent>
+          <StoryList />
+          <Home />
+        </FeedContent>
+        <Recommend />
+      </HomeWrap>
     </Container>
   )
 }
@@ -21,10 +25,22 @@ export default HomePage;
 
 const Container = styled.div`
   width: 100%;
+  display: flex;
 `;
 
-const HomeContent = styled.div`
-  width: 53.5%;
-  padding-left: 17.7%;
-  
+const HomeWrap = styled.div`
+  width: 100%;
+  margin-left: 17.6%;
+  display: flex;
+  justify-content: center;
+`;
+
+const FeedContent = styled.div`
+  width: 630px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 10px;
+  margin-right: 64px;
 `;
