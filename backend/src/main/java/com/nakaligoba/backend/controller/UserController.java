@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Pattern;
 
 @RequestMapping("/api/v1/users")
 @RestController
@@ -54,6 +55,7 @@ public class UserController {
         private String password;
 
         @NotBlank
+        @Pattern(regexp = "^[^\\s@]*$", message = "사용자 이름에 @을 포함시킬 수 없습니다.")
         private String username;
 
         @NotBlank
