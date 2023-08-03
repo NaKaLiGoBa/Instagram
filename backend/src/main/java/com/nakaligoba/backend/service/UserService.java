@@ -16,6 +16,14 @@ public class UserService {
 
     @Transactional
     public User create(UserDto dto) {
+        if (userRepository.existsByEmail(dto.email)) {
+            throw new IllegalArgumentException("이메일이 중복되었습니다.");
+        }
+
+        if (userRepository.existsByUsername(dto.username)) {
+            throw new IllegalArgumentException("아이디가 중복되었습니다.");
+        }
+
         User createdUser = User.builder()
                 .email(dto.email)
                 .username(dto.username)
