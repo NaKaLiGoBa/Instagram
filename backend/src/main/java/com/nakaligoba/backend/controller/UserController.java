@@ -48,17 +48,17 @@ public class UserController {
     @AllArgsConstructor(access = AccessLevel.PROTECTED)
     static class SignupRequest {
 
-        @Email
+        @Email(message = "이메일 형식을 지켜야 합니다.")
         private String email;
 
-        @NotBlank
+        @NotBlank(message = "비밀번호를 입력해야 합니다.")
         private String password;
 
         @NotBlank
         @Pattern(regexp = "^[^\\s@]*$", message = "사용자 이름에 @을 포함시킬 수 없습니다.")
         private String username;
 
-        @NotBlank
+        @NotBlank(message = "성명을 입력해야 합니다.")
         private String fullname;
     }
 
