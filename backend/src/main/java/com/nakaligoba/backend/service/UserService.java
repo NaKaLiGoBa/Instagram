@@ -3,6 +3,7 @@ package com.nakaligoba.backend.service;
 import com.nakaligoba.backend.domain.User;
 import com.nakaligoba.backend.repository.UserRepository;
 import lombok.*;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -11,6 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 public class UserService {
 
     private final UserRepository userRepository;
+    private final PasswordEncoder passwordEncoder;
 
     @Transactional
     public User create(UserDto dto) {
@@ -18,7 +20,7 @@ public class UserService {
                 .email(dto.email)
                 .username(dto.username)
                 .fullName(dto.fullname)
-                .password(dto.password)
+                .password(passwordEncoder.encode(dto.password))
                 .build();
 
         return userRepository.save(createdUser);
