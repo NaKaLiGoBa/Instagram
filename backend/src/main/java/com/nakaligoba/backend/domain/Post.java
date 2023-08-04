@@ -18,7 +18,7 @@ public class Post {
     @Column(name = "id")
     private Long id;
 
-    @Column(name = "content", nullable = true)
+    @Column(name = "content")
     private String content;
 
     @OneToMany(mappedBy = "post")
@@ -26,11 +26,11 @@ public class Post {
     private List<Photo> photos;
 
     @CreatedDate
-    @Column(name = "created_at", nullable = false)
+    @Column(name = "created_at")
     private LocalDateTime createdAt;
 
     @LastModifiedDate
-    @Column(name = "updated_at", nullable = false)
+    @Column(name = "updated_at")
     private LocalDateTime updatedAt;
 
     @Builder
