@@ -34,14 +34,6 @@ public class UserController {
         return ResponseEntity.ok().build();
     }
 
-    @ExceptionHandler(IllegalArgumentException.class)
-    public ResponseEntity<ErrorResult> handleBadRequest(IllegalArgumentException ex) {
-        ErrorResult errorResult = new ErrorResult(ex.getMessage());
-
-        return ResponseEntity
-                .status(HttpStatus.BAD_REQUEST)
-                .body(errorResult);
-    }
 
     @Data
     @Builder
@@ -62,11 +54,4 @@ public class UserController {
         private String fullname;
     }
 
-    private static class ErrorResult {
-        private String message;
-
-        public ErrorResult(String message) {
-            this.message = message;
-        }
-    }
 }
