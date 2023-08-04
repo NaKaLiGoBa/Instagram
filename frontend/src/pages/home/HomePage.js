@@ -2,7 +2,7 @@ import React from 'react';
 import { styled } from 'styled-components';
 
 import Home from '../../components/home/Home';
-import SideBar from '../../components/layout/SideBar';
+import SideBar from '../../components/layout/sidebar/SideBar';
 import StoryList from '../../components/home/StoryList';
 import Recommend from '../../components/home/Recommend';
 

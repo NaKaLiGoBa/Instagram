@@ -1,3 +1,11 @@
+/*
+  - 무한스크롤 (2초 기준 1개씩 추가)
+  - page state로 게시물 추가 요청 예정
+  - FeedList 관련 내용 컴포넌트로 분리 예정
+
+  react-intersection-observer 라이브러리 사용
+ */
+
 import React, { useEffect, useState } from 'react'
 import styled from 'styled-components';
 
