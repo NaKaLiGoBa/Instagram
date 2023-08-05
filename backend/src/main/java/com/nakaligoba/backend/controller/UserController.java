@@ -34,39 +34,24 @@ public class UserController {
         return ResponseEntity.ok().build();
     }
 
-    @ExceptionHandler(IllegalArgumentException.class)
-    public ResponseEntity<ErrorResult> handleBadRequest(IllegalArgumentException ex) {
-        ErrorResult errorResult = new ErrorResult(ex.getMessage());
-
-        return ResponseEntity
-                .status(HttpStatus.BAD_REQUEST)
-                .body(errorResult);
-    }
 
     @Data
     @Builder
     @AllArgsConstructor(access = AccessLevel.PROTECTED)
     static class SignupRequest {
 
-        @Email(message = "이메일 형식을 지켜야 합니다.")
+        @Email
         private String email;
 
-        @NotBlank(message = "비밀번호를 입력해야 합니다.")
+        @NotBlank
         private String password;
 
         @NotBlank
-        @Pattern(regexp = "^[^\\s@]*$", message = "사용자 이름에 @을 포함시킬 수 없습니다.")
+        @Pattern(regexp = "^[^\\s@]*$")
         private String username;
 
-        @NotBlank(message = "성명을 입력해야 합니다.")
+        @NotBlank
         private String fullname;
     }
 
-    private static class ErrorResult {
-        private String message;
-
-        public ErrorResult(String message) {
-            this.message = message;
-        }
-    }
 }
