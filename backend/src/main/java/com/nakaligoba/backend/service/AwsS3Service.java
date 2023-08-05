@@ -10,6 +10,7 @@ import org.springframework.web.multipart.MultipartFile;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 @RequiredArgsConstructor
 @Service
@@ -20,13 +21,13 @@ public class AwsS3Service {
     @Value("${cloud.aws.s3.bucket}")
     private String bucket;
 
-    public List<String> uploadPhotosV1(MultipartFile[] photos) {
+    public List<String> uploadPhotosAndGetUrls(MultipartFile[] photos) {
 
         List<String> photoUrls = new ArrayList<>();
         for (MultipartFile photo : photos) {
             String createdURL = null;
             try {
-                createdURL = uploadAndGetURL(photo);
+                createdURL = uploadPhotoAndGetUrl(photo);
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
@@ -36,13 +37,32 @@ public class AwsS3Service {
         return photoUrls;
     }
 
-    private String uploadAndGetURL(MultipartFile photo) throws IOException {
+    private String uploadPhotoAndGetUrl(MultipartFile photo) throws IOException {
         String originalName = photo.getOriginalFilename(); // change it later to a better one
+        String uploadName = createUploadName(originalName);
+
+        ObjectMetadata metadata = getObjectMetadata(photo);
+
+        amazonS3Client.putObject(bucket, uploadName, photo.getInputStream(), metadata);
+        return amazonS3Client.getUrl(bucket, uploadName).toString();
+    }
+
+    private String createUploadName(String originalName) {
+        String ext = extractExt(originalName);
+        String uuid = UUID.randomUUID().toString();
+        return uuid + "." + ext;
+    }
+
+    private String extractExt(String originalName) {
+        int pos = originalName.lastIndexOf(".");
+        return originalName.substring(pos + 1);
+    }
+
+    private ObjectMetadata getObjectMetadata(MultipartFile photo) {
         ObjectMetadata metadata = new ObjectMetadata();
         metadata.setContentLength(photo.getSize());
         metadata.setContentType(photo.getContentType());
-        amazonS3Client.putObject(bucket, originalName, photo.getInputStream(), metadata);
-        return amazonS3Client.getUrl(bucket, originalName).toString();
+        return metadata;
     }
 
 }
