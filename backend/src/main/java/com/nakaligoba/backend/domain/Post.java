@@ -22,12 +22,11 @@ public class Post {
     private String content;
 
     @OneToMany(mappedBy = "post")
-    @Column(name = "photos", nullable = false)
+    @Column(name = "photos")
     private List<Photo> photos;
 
     @ManyToOne
-    @JoinColumn(name = "user_id")
-    @Column(nullable = false)
+    @JoinColumn(name = "user_id", nullable = false)
     private User user;
 
     @CreatedDate
@@ -39,7 +38,8 @@ public class Post {
     private LocalDateTime updatedAt;
 
     @Builder
-    public Post(String content, List<Photo> photos) {
+    public Post(String content, List<Photo> photos, User user) {
+        this.user = user;
         this.content = content;
         this.photos = photos;
     }
