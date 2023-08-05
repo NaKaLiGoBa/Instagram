@@ -25,6 +25,11 @@ public class Post {
     @Column(name = "photos", nullable = false)
     private List<Photo> photos;
 
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    @Column(nullable = false)
+    private User user;
+
     @CreatedDate
     @Column(name = "created_at")
     private LocalDateTime createdAt;

@@ -9,6 +9,7 @@ import org.springframework.data.annotation.LastModifiedDate;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity
 @Getter
@@ -46,6 +47,10 @@ public class User {
 
     @Column(name = "description")
     private String description;
+
+    @OneToMany(mappedBy = "user")
+    @Column(name = "posts")
+    private List<Post> posts;
 
     @Builder
     public User(String email, String password, String fullName, String username) {
