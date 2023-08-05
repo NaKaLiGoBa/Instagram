@@ -3,6 +3,7 @@ package com.nakaligoba.backend.service;
 import com.amazonaws.services.s3.AmazonS3;
 import com.amazonaws.services.s3.model.ObjectMetadata;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -21,7 +22,7 @@ public class AwsS3Service {
     @Value("${cloud.aws.s3.bucket}")
     private String bucket;
 
-    public List<String> uploadPhotosAndGetUrls(MultipartFile[] photos) {
+    public List<String> uploadPhotosAndGetUrls(List<MultipartFile> photos) {
 
         List<String> photoUrls = new ArrayList<>();
         for (MultipartFile photo : photos) {

@@ -9,6 +9,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.util.List;
+
 @RequestMapping("/api/v1/users/{userId}/posts")
 @RestController
 @RequiredArgsConstructor
@@ -19,7 +21,7 @@ public class PostController {
 
     @PostMapping
     public ResponseEntity<?> create(@PathVariable Long userId,
-                                    @RequestParam("photos") MultipartFile[] photos,
+                                    @RequestParam("photos") List<MultipartFile> photos,
                                     @RequestParam("content") String content) {
         PostDto postDto = PostDto.builder()
                 .userId(userId)

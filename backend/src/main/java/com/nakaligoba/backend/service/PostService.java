@@ -66,7 +66,7 @@ public class PostService {
     @AllArgsConstructor(access = AccessLevel.PROTECTED)
     public static class PostDto {
         private Long userId;
-        private MultipartFile[] photos;
+        private List<MultipartFile> photos;
         private String content;
     }
 }
