@@ -38,6 +38,7 @@ public class AuthController {
 
             Cookie cookie = new Cookie("session_id", uuid.toString());
             cookie.setMaxAge(3600);
+            cookie.setPath("/");
             response.addCookie(cookie);
             return ResponseEntity.ok().build();
         }
