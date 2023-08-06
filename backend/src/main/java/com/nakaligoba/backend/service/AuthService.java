@@ -26,14 +26,14 @@ public class AuthService {
 
     private boolean authenticateByEmail(String email, String password) {
         User user = userRepository.findByEmail(email)
-                .orElseThrow(IllegalArgumentException::new);
+                .orElseThrow(() -> new IllegalArgumentException("해당 이메일의 유저가 존재하지 않습니다."));
 
         return matchPassword(user, password);
     }
 
     private boolean authenticateByUsername(String username, String password) {
         User user = userRepository.findByUsername(username)
-                .orElseThrow(IllegalArgumentException::new);
+                .orElseThrow(() -> new IllegalArgumentException("해당 사용자 아이디의 유저가 존재하지 않습니다."));
 
         return matchPassword(user, password);
     }
