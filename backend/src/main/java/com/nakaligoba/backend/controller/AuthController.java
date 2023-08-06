@@ -1,7 +1,9 @@
 package com.nakaligoba.backend.controller;
 
 import com.nakaligoba.backend.service.AuthService;
+import lombok.Data;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -15,6 +17,7 @@ import javax.validation.Valid;
 import javax.validation.constraints.NotBlank;
 import java.util.UUID;
 
+@Slf4j
 @RequestMapping("/api/v1/auth")
 @RestController
 @RequiredArgsConstructor
@@ -30,7 +33,7 @@ public class AuthController {
     ) {
         if (authService.authenticate(request.id, request.password)) {
             UUID uuid = UUID.randomUUID();
-
+            log.info(uuid.toString());
             session.setAttribute("session_id", uuid);
 
             Cookie cookie = new Cookie("session_id", uuid.toString());
@@ -42,6 +45,7 @@ public class AuthController {
         throw new IllegalArgumentException("인증 실패");
     }
 
+    @Data
     static class SigninRequest {
 
         @NotBlank
