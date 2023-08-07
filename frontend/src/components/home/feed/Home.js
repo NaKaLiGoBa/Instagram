@@ -8,7 +8,7 @@
   react-responsive-carousel 라이브러리 사용
   - showArrows: 이전 및 다음 화살표 표시
   - showStatus: 현재 페이지/전체 페이지 표시
-  - showThumbs: 엄지
+  - showThumbs: 엄지 모양 표시
   - dynamicHeight: 고정되지 않는 항목 높이
  */
 
@@ -29,6 +29,7 @@ import { BiBookmark } from "react-icons/bi";
 import data from './data.json';
 
 import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
+import DetailFeed from './DetailFeed';
 
 function Home() {
   const [feedList, setFeedList] = useState(data);
@@ -154,9 +155,7 @@ function Home() {
                   <FeedBottomUsername>{list.username}</FeedBottomUsername>
                   &nbsp;{list.content}
                 </FeedBottomUsernameBox>
-                <FeedBottomComment>
-                  댓글 {list.comments}개 모두 보기
-                </FeedBottomComment>
+                <DetailFeed comments={list.comments} />
                 <FeedBottomCommentInput placeholder='댓글 달기...' />
               </FeedListBox>
             );
@@ -353,15 +352,6 @@ const FeedBottomUsername = styled.div`
   display: flex;
   align-items: center;
   font-weight: bolder;
-  cursor: pointer;
-`;
-
-const FeedBottomComment = styled.div`
-  width: 140px;
-  height: 24px;
-  display: flex;
-  font-size: 15px;
-  color: #848484;
   cursor: pointer;
 `;
 

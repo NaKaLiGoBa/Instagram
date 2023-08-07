@@ -130,7 +130,6 @@ const StoryListImgBox = styled.div`
   align-items: center;
   border-radius: 50%;
   border: 2px solid transparent;
-  border-radius: 50%;
   background-image: linear-gradient(#fff, #fff), 
   linear-gradient(to right, red 0%,  orange 100%);
   background-origin: border-box;
