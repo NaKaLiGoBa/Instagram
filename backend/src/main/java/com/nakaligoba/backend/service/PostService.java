@@ -57,12 +57,17 @@ public class PostService {
         if (!userByGivenId.equals(userByGivenPostId)) {
             throw new IllegalArgumentException("유저가 일치하지 않습니다");
         }
+
         List<Photo> photos = photoRepository.findAllByPostId(targetPost.getId());
-        awsS3Service.deleteAllByUrlsAtOnce(photos.stream().map(Photo::getUrl).collect(Collectors.toList()));
+        List<String> urls = getUrls(photos);
+        awsS3Service.deleteAllByUrlsAtOnce(urls);
         photoRepository.deleteAllByPostId(targetPost.getId());
         postRepository.delete(targetPost);
     }
 
+    private List<String> getUrls(List<Photo> photos) {
+        return photos.stream().map(Photo::getUrl).collect(Collectors.toList());
+    }
 
     private Post savePostWithoutPhotos(User user, String content) {
         Post post = Post.builder()
