@@ -51,10 +51,19 @@ public class User {
     private List<Post> posts;
 
     @Builder
-    public User(String email, String password, String fullName, String username) {
+    public User(String email, String password , String fullName, String username) {
         this.email = email;
         this.password = password;
         this.fullname = fullName;
         this.username = username;
     }
+
+    public void changeUsername(String username) {
+        this.username = username;
+    }
+    public void changeDescription(String description) {
+        this.description = description;
+    }
+
+
 }
