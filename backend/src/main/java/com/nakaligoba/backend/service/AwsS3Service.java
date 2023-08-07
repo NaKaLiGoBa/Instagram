@@ -1,9 +1,10 @@
 package com.nakaligoba.backend.service;
 
 import com.amazonaws.services.s3.AmazonS3;
+import com.amazonaws.services.s3.model.DeleteObjectRequest;
+import com.amazonaws.services.s3.model.DeleteObjectsRequest;
 import com.amazonaws.services.s3.model.ObjectMetadata;
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -22,13 +23,13 @@ public class AwsS3Service {
     @Value("${cloud.aws.s3.bucket}")
     private String bucket;
 
-    public List<String> uploadPhotosAndGetUrls(List<MultipartFile> photos) {
+    public List<String> uploadAllAndGetUrls(List<MultipartFile> photos) {
 
         List<String> photoUrls = new ArrayList<>();
         for (MultipartFile photo : photos) {
             String createdURL = null;
             try {
-                createdURL = uploadPhotoAndGetUrl(photo);
+                createdURL = uploadAndGetUrl(photo);
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
@@ -38,7 +39,7 @@ public class AwsS3Service {
         return photoUrls;
     }
 
-    private String uploadPhotoAndGetUrl(MultipartFile photo) throws IOException {
+    private String uploadAndGetUrl(MultipartFile photo) throws IOException {
         String originalName = photo.getOriginalFilename(); // change it later to a better one
         String uploadName = createUploadName(originalName);
 
@@ -46,6 +47,22 @@ public class AwsS3Service {
 
         amazonS3Client.putObject(bucket, uploadName, photo.getInputStream(), metadata);
         return amazonS3Client.getUrl(bucket, uploadName).toString();
+    }
+
+    public void deleteAllByUrlsAtOnce(List<String> urls) {
+        List<String> objectKeys = new ArrayList<>();
+        for (String url : urls) {
+            objectKeys.add(getObjectKey(url));
+        }
+
+        DeleteObjectsRequest dor = new DeleteObjectsRequest(bucket)
+                .withKeys(objectKeys.toArray(new String[objectKeys.size()]));
+        amazonS3Client.deleteObjects(dor);
+    }
+
+    private String getObjectKey(String url) {
+        int objectKeyStartAt = url.lastIndexOf("/") + 1;
+        return url.substring(objectKeyStartAt);
     }
 
     private String createUploadName(String originalName) {

@@ -2,9 +2,9 @@ package com.nakaligoba.backend.controller;
 
 import com.nakaligoba.backend.domain.Post;
 import com.nakaligoba.backend.service.PostService;
-import com.nakaligoba.backend.service.PostService.PostDto;
+import com.nakaligoba.backend.service.PostService.PostCreateDto;
+import com.nakaligoba.backend.service.PostService.PostDeleteDto;
 import lombok.*;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -23,14 +23,26 @@ public class PostController {
     public ResponseEntity<?> create(@PathVariable Long userId,
                                     @RequestParam("photos") List<MultipartFile> photos,
                                     @RequestParam("content") String content) {
-        PostDto postDto = PostDto.builder()
+        PostCreateDto dto = PostCreateDto.builder()
                 .userId(userId)
                 .photos(photos)
                 .content(content)
                 .build();
 
-        Post post = postService.create(postDto);
+        Post post = postService.create(dto);
 
+        return ResponseEntity.ok().build();
+    }
+
+    @DeleteMapping("/{postId}")
+    public ResponseEntity<?> delete(@PathVariable Long userId,
+                                    @PathVariable Long postId) {
+        PostDeleteDto dto = PostDeleteDto.builder()
+                .userId(userId)
+                .postId(postId)
+                .build();
+
+        postService.delete(dto);
         return ResponseEntity.ok().build();
     }
 }

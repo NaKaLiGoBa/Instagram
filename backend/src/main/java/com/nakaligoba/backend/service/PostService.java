@@ -13,6 +13,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @RequiredArgsConstructor
 @Service
@@ -24,13 +25,13 @@ public class PostService {
     private final PostRepository postRepository;
 
     @Transactional
-    public Post create(PostDto dto) {
-        User user = queryAndGetUser(dto);
-        Post post = savePostWithoutPhotos(dto, user);
+    public Post create(PostCreateDto dto) {
+        User user = queryAndGetUser(dto.userId);
+        Post post = savePostWithoutPhotos(user, dto.content);
 
         // Create and associate the Photo objects with Post object
         List<Photo> photos = new ArrayList<>();
-        List<String> photoURLs = awsS3Service.uploadPhotosAndGetUrls(dto.getPhotos());
+        List<String> photoURLs = awsS3Service.uploadAllAndGetUrls(dto.getPhotos());
         for (String url : photoURLs) {
             Photo createdPhoto = Photo.builder()
                     .url(url)
@@ -47,27 +48,62 @@ public class PostService {
         return post;
     }
 
-    private Post savePostWithoutPhotos(PostDto dto, User user) {
+    @Transactional
+    public void delete(PostDeleteDto dto) {
+        User userByGivenId = queryAndGetUser(dto.userId);
+        Post targetPost = queryAndGetPost(dto.postId);
+        User userByGivenPostId = targetPost.getUser();
+
+        if (!userByGivenId.equals(userByGivenPostId)) {
+            throw new IllegalArgumentException("유저가 일치하지 않습니다");
+        }
+
+        List<Photo> photos = photoRepository.findAllByPostId(targetPost.getId());
+        List<String> urls = getUrls(photos);
+        awsS3Service.deleteAllByUrlsAtOnce(urls);
+        photoRepository.deleteAllByPostId(targetPost.getId());
+        postRepository.delete(targetPost);
+    }
+
+    private List<String> getUrls(List<Photo> photos) {
+        return photos.stream().map(Photo::getUrl).collect(Collectors.toList());
+    }
+
+    private Post savePostWithoutPhotos(User user, String content) {
         Post post = Post.builder()
-                .content(dto.content)
+                .content(content)
                 .user(user)
                 .build();
         post = postRepository.save(post);
         return post;
     }
 
-    private User queryAndGetUser(PostDto dto) {
-        return userRepository.findById(dto.userId)
+    private User queryAndGetUser(Long userId) {
+        return userRepository.findById(userId)
                 .orElseThrow(() -> new IllegalArgumentException("존재하지 않는 유저입니다"));
+    }
+
+    private Post queryAndGetPost(Long postId) {
+        return postRepository.findById(postId)
+                .orElseThrow(() -> new IllegalArgumentException("존재하지 않는 포스트입니다"));
+    }
+
+
+    @Data
+    @Builder
+    @AllArgsConstructor(access = AccessLevel.PROTECTED)
+    public static class PostCreateDto {
+        private Long userId;
+        private List<MultipartFile> photos;
+        private String content;
     }
 
     @Data
     @Builder
     @AllArgsConstructor(access = AccessLevel.PROTECTED)
-    public static class PostDto {
+    public static class PostDeleteDto {
         private Long userId;
-        private List<MultipartFile> photos;
-        private String content;
+        private Long postId;
     }
 }
 
