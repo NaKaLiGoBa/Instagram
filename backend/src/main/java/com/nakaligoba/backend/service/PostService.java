@@ -50,19 +50,18 @@ public class PostService {
 
     @Transactional
     public void delete(PostDeleteDto dto) {
-        User userByGivenId = queryAndGetUser(dto.userId);
         Post targetPost = queryAndGetPost(dto.postId);
-        User userByGivenPostId = targetPost.getUser();
+        Long userIdFromTargetPost = targetPost.getUser().getId();
 
-        if (!userByGivenId.equals(userByGivenPostId)) {
+        if (!dto.userId.equals(userIdFromTargetPost)) {
             throw new IllegalArgumentException("유저가 일치하지 않습니다");
         }
 
-        List<Photo> photos = photoRepository.findAllByPostId(targetPost.getId());
+        List<Photo> photos = photoRepository.findAllByPostId(dto.postId);
         List<String> urls = getUrls(photos);
         awsS3Service.deleteAllByUrlsAtOnce(urls);
-        photoRepository.deleteAllByPostId(targetPost.getId());
-        postRepository.delete(targetPost);
+        photoRepository.deleteAllByPostId(dto.postId);
+        postRepository.deleteById(dto.postId);
     }
 
     private List<String> getUrls(List<Photo> photos) {
