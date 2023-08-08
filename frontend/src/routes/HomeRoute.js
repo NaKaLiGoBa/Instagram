@@ -1,6 +1,6 @@
 import { Routes, Route } from "react-router-dom";
 
-import { HomePage, MyProfilePage } from '../pages/home/index';
+import { HomePage, MyProfilePage } from "../pages/home/index";
 
 export default function HomeRoute() {
   return (
@@ -9,4 +9,4 @@ export default function HomeRoute() {
       <Route path="/my-profile" element={<MyProfilePage />} />
     </Routes>
   );
-};
+}
