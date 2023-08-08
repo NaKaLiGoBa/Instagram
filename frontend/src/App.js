@@ -1,7 +1,7 @@
-import React from 'react';
-import { BrowserRouter } from 'react-router-dom';
+import React from "react";
+import { BrowserRouter } from "react-router-dom";
 
-import MainRoute from './routes/MainRoute';
+import MainRoute from "./routes/MainRoute";
 
 function App() {
   return (
@@ -9,6 +9,6 @@ function App() {
       <MainRoute />
     </BrowserRouter>
   );
-};
+}
 
 export default App;

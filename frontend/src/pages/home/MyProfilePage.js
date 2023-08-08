@@ -1,8 +1,9 @@
-import React from 'react'
-import { styled } from 'styled-components';
+import React from "react";
+import { styled } from "styled-components";
 
-import SideBar from '../../components/layout/sidebar/SideBar';
-import MyProfile from '../../components/myprofile/MyProfile';
+import SideBar from "../../components/layout/sidebar/SideBar";
+import MyProfile from "../../components/myprofile/MyProfile";
+import MyFeeds from "../../components/myprofile/MyFeeds";
 
 function MyProfilePage() {
   return (
@@ -10,9 +11,10 @@ function MyProfilePage() {
       <SideBar />
       <MyProfileWrap>
         <MyProfile />
+        <MyFeeds />
       </MyProfileWrap>
     </Container>
-  )
+  );
 }
 
 export default MyProfilePage;

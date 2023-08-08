@@ -1,6 +1,6 @@
 import { Routes, Route } from "react-router-dom";
 
-import { HomeRoute, AuthRoute } from './index';
+import { HomeRoute, AuthRoute } from "./index";
 
 export default function MainRoute() {
   return (
@@ -9,4 +9,4 @@ export default function MainRoute() {
       <Route path="/auth/*" element={<AuthRoute />} />
     </Routes>
   );
-};
+}
