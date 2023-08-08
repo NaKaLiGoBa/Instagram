@@ -1,24 +1,35 @@
 /*
-  - 무한스크롤 (2초 기준 1개씩 추가)
   - page state로 게시물 추가 요청 예정
   - FeedList 관련 내용 컴포넌트로 분리 예정
 
   react-intersection-observer 라이브러리 사용
+  - 무한스크롤 (2초 기준 1개씩 추가)
+
+  react-responsive-carousel 라이브러리 사용
+  - showArrows: 이전 및 다음 화살표 표시
+  - showStatus: 현재 페이지/전체 페이지 표시
+  - showThumbs: 엄지 모양 표시
+  - dynamicHeight: 고정되지 않는 항목 높이
  */
 
 import React, { useEffect, useState } from 'react'
 import styled from 'styled-components';
 
 import { useInView } from 'react-intersection-observer';
+import { Carousel } from 'react-responsive-carousel';
 
-// icon, dummy
+import FeedCheck from './FeedCheck';
+
+// icon, dummy, css
 import { AiOutlineHeart } from "react-icons/ai";
 import { FaRegComment } from "react-icons/fa";
 import { TbLocation } from "react-icons/tb";
 import { BiBookmark } from "react-icons/bi";
 
 import data from './data.json';
-import FeedCheck from './FeedCheck';
+
+import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
+import DetailFeed from './DetailFeed';
 
 function Home() {
   const [feedList, setFeedList] = useState(data);
@@ -34,7 +45,6 @@ function Home() {
     };
 
     return () => { clearTimeout(timeCurrent); }
-
   }, [inView])
 
   const handleOnLimitScroll = () => {
@@ -44,7 +54,20 @@ function Home() {
         postId: 4,
         username: "mintmin",
         profile_image: "./images/jisu.jpeg",
-        photos: "./images/jisu.jpeg",
+        photos: [
+          {
+            id: 1,
+            url: "./images/gd.jpeg"
+          },
+          {
+            id: 2,
+            url: "./images/jo.jpeg"
+          },
+          {
+            id: 3,
+            url: "./images/jisu.jpeg"
+          }
+        ],
         like_profile_image: [
           "./images/jisu.jpeg",
           "./images/gd.jpeg",
@@ -78,7 +101,20 @@ function Home() {
                   </FeedListTopInfoBox>
                 </FeedListTopBox>
                 <FeedPhotoBox>
-                  <FeedPhoto src={list.photos} />
+                  <Carousel
+                    showArrows={true}
+                    showStatus={false}
+                    showThumbs={false}
+                    dynamicHeight={true}
+                  >
+                    {
+                      list.photos.map(({ id, url }) => {
+                        return (
+                          <FeedPhoto key={id} src={url} />
+                        )
+                      })
+                    }
+                  </Carousel>
                 </FeedPhotoBox>
                 <FeedIconBox>
                   <FeedIconLeftBox>
@@ -119,9 +155,7 @@ function Home() {
                   <FeedBottomUsername>{list.username}</FeedBottomUsername>
                   &nbsp;{list.content}
                 </FeedBottomUsernameBox>
-                <FeedBottomComment>
-                  댓글 {list.comments}개 모두 보기
-                </FeedBottomComment>
+                <DetailFeed comments={list.comments} />
                 <FeedBottomCommentInput placeholder='댓글 달기...' />
               </FeedListBox>
             );
@@ -318,15 +352,6 @@ const FeedBottomUsername = styled.div`
   display: flex;
   align-items: center;
   font-weight: bolder;
-  cursor: pointer;
-`;
-
-const FeedBottomComment = styled.div`
-  width: 140px;
-  height: 24px;
-  display: flex;
-  font-size: 15px;
-  color: #848484;
   cursor: pointer;
 `;
 

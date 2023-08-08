@@ -3,7 +3,20 @@
     "postId": 1,
     "username": "mintmin",
     "profile_image": "./images/jisu.jpeg",
-    "photos": "./images/jisu.jpeg",
+    "photos": [
+      {
+        "id": 1,
+        "url": "./images/jisu.jpeg"
+      },
+      {
+        "id": 2,
+        "url": "./images/gd.jpeg"
+      },
+      {
+        "id": 3,
+        "url": "./images/jo.jpeg"
+      }
+    ],
     "like_profile_image": [
       "./images/jisu.jpeg",
       "./images/gd.jpeg",
@@ -16,7 +29,20 @@
     "postId": 2,
     "username": "choi_zero",
     "profile_image": "./images/gd.jpeg",
-    "photos": "./images/gd.jpeg",
+    "photos": [
+      {
+        "id": 1,
+        "url": "./images/gd.jpeg"
+      },
+      {
+        "id": 2,
+        "url": "./images/jo.jpeg"
+      },
+      {
+        "id": 3,
+        "url": "./images/jisu.jpeg"
+      }
+    ],
     "like_profile_image": [
       "./images/gd.jpeg",
       "./images/jo.jpeg",
@@ -29,7 +55,20 @@
     "postId": 3,
     "username": "Jhon_Ahn",
     "profile_image": "./images/jo.jpeg",
-    "photos": "./images/jo.jpeg",
+    "photos": [
+      {
+        "id": 1,
+        "url": "./images/jo.jpeg"
+      },
+      {
+        "id": 2,
+        "url": "./images/jisu.jpeg"
+      },
+      {
+        "id": 3,
+        "url": "./images/gd.jpeg"
+      }
+    ],
     "like_profile_image": [
       "./images/jo.jpeg",
       "./images/jisu.jpeg",

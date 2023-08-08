@@ -1,10 +1,10 @@
 import React from 'react';
 import { styled } from 'styled-components';
 
-import Home from '../../components/home/Home';
+import Home from '../../components/home/feed/Home';
 import SideBar from '../../components/layout/sidebar/SideBar';
-import StoryList from '../../components/home/StoryList';
-import Recommend from '../../components/home/Recommend';
+import StoryList from '../../components/home/story/StoryList';
+import Recommend from '../../components/home/recommend/Recommend';
 
 function HomePage() {
   return (
