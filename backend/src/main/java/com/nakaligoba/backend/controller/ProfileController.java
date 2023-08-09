@@ -1,11 +1,13 @@
 package com.nakaligoba.backend.controller;
 
 import com.nakaligoba.backend.service.ProfileService;
+import com.nakaligoba.backend.service.ProfileService.ProfileDto;
 import lombok.Builder;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 
 @RequestMapping("/api/v1/users")
@@ -18,7 +20,7 @@ public class ProfileController {
     @GetMapping("/{id}")
     public ProfileResponse get(@PathVariable Long id) {
 
-        ProfileService.ProfileDto profile = profileService.getProfile(id);
+        ProfileDto profile = profileService.getProfile(id);
 
         return ProfileResponse.builder()
                 .username(profile.getUsername())
@@ -27,11 +29,27 @@ public class ProfileController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Void> put(@PathVariable Long id, @RequestBody ProfileRequest profileRequest) {
+    public ResponseEntity<Void> put(@PathVariable Long id,
+                                    @RequestBody ProfileRequest profileRequest) {
 
-        ProfileService.ProfileDto updatedProfile = profileService.putProfile(id, profileRequest);
+        ProfileDto updatedProfile = profileService.putProfile(id, profileRequest);
 
         return ResponseEntity.ok().build();
+    }
+
+    @PutMapping("/{id}/image")
+    public ResponseEntity<Void> putImage(@PathVariable Long id,
+                                    @RequestParam MultipartFile image) {
+
+        ProfileDto dto = ProfileDto.builder()
+                .userId(id)
+                .image(image)
+                .build();
+
+        profileService.putImage(dto);
+
+        return ResponseEntity.ok().build();
+
     }
 
     @Data
