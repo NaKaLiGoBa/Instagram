@@ -3,17 +3,19 @@ package com.nakaligoba.backend.service;
 import com.nakaligoba.backend.controller.ProfileController.*;
 import com.nakaligoba.backend.domain.User;
 import com.nakaligoba.backend.repository.UserRepository;
-import lombok.Builder;
-import lombok.Data;
-import lombok.RequiredArgsConstructor;
+import lombok.*;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.multipart.MultipartFile;
+
+import java.io.IOException;
 
 @Service
 @RequiredArgsConstructor
 public class ProfileService {
 
     private final UserRepository userRepository;
+    private final AwsS3Service awsS3Service;
 
     @Transactional(readOnly = true)
     public ProfileDto getProfile(Long id) {
@@ -43,15 +45,26 @@ public class ProfileService {
                 .build();
     }
 
+    @Transactional
+    public void putImage(ProfileDto dto) {
+        User user = userRepository.findById(dto.getUserId())
+                .orElseThrow(() -> new IllegalArgumentException("존재하지 않는 유저입니다"));
+
+        try {
+            String imageUrl = awsS3Service.uploadAndGetUrl(dto.getImage());
+            user.changeImageUrl(imageUrl);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
     @Data
+    @Builder
+    @AllArgsConstructor(access = AccessLevel.PROTECTED)
     public static class ProfileDto {
+        private Long userId;
         private String username;
         private String description;
-
-        @Builder
-        public ProfileDto(String username, String description) {
-            this.username = username;
-            this.description = description;
-        }
+        private MultipartFile image;
     }
 }
