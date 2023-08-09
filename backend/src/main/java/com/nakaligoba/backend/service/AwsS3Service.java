@@ -39,7 +39,7 @@ public class AwsS3Service {
         return photoUrls;
     }
 
-    private String uploadAndGetUrl(MultipartFile photo) throws IOException {
+    public String uploadAndGetUrl(MultipartFile photo) throws IOException {
         String originalName = photo.getOriginalFilename(); // change it later to a better one
         String uploadName = createUploadName(originalName);
 
