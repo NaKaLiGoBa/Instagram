@@ -4,7 +4,8 @@ import com.nakaligoba.backend.domain.Post;
 import com.nakaligoba.backend.service.PostService;
 import com.nakaligoba.backend.service.PostService.PostCreateDto;
 import com.nakaligoba.backend.service.PostService.PostDeleteDto;
-import lombok.*;
+import com.nakaligoba.backend.service.PostService.PostReadDto;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -17,7 +18,6 @@ import java.util.List;
 public class PostController {
 
     private final PostService postService;
-
 
     @PostMapping
     public ResponseEntity<?> create(@PathVariable Long userId,
@@ -34,6 +34,13 @@ public class PostController {
         return ResponseEntity.ok().build();
     }
 
+    @GetMapping("/{postId}")
+    public ResponseEntity<PostReadDto> read(@PathVariable Long userId,
+                                            @PathVariable Long postId) {
+        PostReadDto response = postService.read(userId, postId);
+        return ResponseEntity.ok(response);
+    }
+
     @DeleteMapping("/{postId}")
     public ResponseEntity<?> delete(@PathVariable Long userId,
                                     @PathVariable Long postId) {
@@ -45,4 +52,6 @@ public class PostController {
         postService.delete(dto);
         return ResponseEntity.ok().build();
     }
+
+
 }
