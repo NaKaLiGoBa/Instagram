@@ -58,6 +58,16 @@ public class ProfileService {
         }
     }
 
+    @Transactional
+    public void deleteImage(ProfileDto dto) {
+        User user = userRepository.findById(dto.getUserId())
+                .orElseThrow(() -> new IllegalArgumentException("존재하지 않는 유저입니다"));
+
+        String url = user.getImageUrl();
+        awsS3Service.deleteByUrl(url);
+        user.changeImageUrl(null);
+    }
+
     @Data
     @Builder
     @AllArgsConstructor(access = AccessLevel.PROTECTED)
