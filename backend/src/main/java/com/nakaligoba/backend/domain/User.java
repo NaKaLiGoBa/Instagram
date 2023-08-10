@@ -54,5 +54,9 @@ public class User extends BaseEntity {
         this.description = description;
     }
 
+    public void changeImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
+    }
+
 
 }
