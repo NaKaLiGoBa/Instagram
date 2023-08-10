@@ -60,6 +60,12 @@ public class AwsS3Service {
         amazonS3Client.deleteObjects(dor);
     }
 
+    public void deleteByUrl(String url) {
+        String objectKey = getObjectKey(url);
+        DeleteObjectRequest dor = new DeleteObjectRequest(bucket, objectKey);
+        amazonS3Client.deleteObject(dor);
+    }
+
     private String getObjectKey(String url) {
         int objectKeyStartAt = url.lastIndexOf("/") + 1;
         return url.substring(objectKeyStartAt);
