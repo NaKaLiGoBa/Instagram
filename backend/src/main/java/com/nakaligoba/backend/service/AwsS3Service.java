@@ -39,7 +39,7 @@ public class AwsS3Service {
         return photoUrls;
     }
 
-    private String uploadAndGetUrl(MultipartFile photo) throws IOException {
+    public String uploadAndGetUrl(MultipartFile photo) throws IOException {
         String originalName = photo.getOriginalFilename(); // change it later to a better one
         String uploadName = createUploadName(originalName);
 
@@ -58,6 +58,12 @@ public class AwsS3Service {
         DeleteObjectsRequest dor = new DeleteObjectsRequest(bucket)
                 .withKeys(objectKeys.toArray(new String[objectKeys.size()]));
         amazonS3Client.deleteObjects(dor);
+    }
+
+    public void deleteByUrl(String url) {
+        String objectKey = getObjectKey(url);
+        DeleteObjectRequest dor = new DeleteObjectRequest(bucket, objectKey);
+        amazonS3Client.deleteObject(dor);
     }
 
     private String getObjectKey(String url) {
