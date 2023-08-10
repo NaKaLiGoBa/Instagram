@@ -52,6 +52,18 @@ public class ProfileController {
 
     }
 
+    @DeleteMapping("/{id}/image")
+    public ResponseEntity<Void> deleteImage(@PathVariable Long id) {
+
+        ProfileDto dto = ProfileDto.builder()
+                .userId(id)
+                .build();
+
+        profileService.deleteImage(dto);
+
+        return ResponseEntity.ok().build();
+    }
+
     @Data
     static class ProfileResponse {
         private String username;
