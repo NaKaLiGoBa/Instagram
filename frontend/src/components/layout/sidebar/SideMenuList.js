@@ -16,6 +16,7 @@ import { BiMoviePlay } from "react-icons/bi";
 import { TbLocation } from "react-icons/tb";
 import { LuPlusSquare } from "react-icons/lu";
 import { FiSearch } from "react-icons/fi";
+import WriteModal from '../../write/WriteModal';
 
 function SideMenuList() {
   return (
@@ -30,7 +31,7 @@ function SideMenuList() {
         <SideMenu path='/' title='릴스'><BiMoviePlay /></SideMenu>
         <SideMenu path='/' title='메시지'><TbLocation /></SideMenu>
         <SideMenu path='/' title='알림'><AiOutlineHeart /></SideMenu>
-        <SideMenu path='/' title='만들기'><LuPlusSquare /></SideMenu>
+        <WriteModal />
         <SideMenu path='/my-profile' title='프로필'><SideLinkProfile /></SideMenu>
       </SideLinkBox>
     </Fragment>

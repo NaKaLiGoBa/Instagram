@@ -9,4 +9,4 @@ export default function HomeRoute() {
       <Route path="/my-profile" element={<MyProfilePage />} />
     </Routes>
   );
-}
+};
