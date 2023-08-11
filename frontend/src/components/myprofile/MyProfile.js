@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
+import Modal from "../modal/Modal";
 
 const MainLayout = styled.div`
   padding: 30px 20px 0px;
@@ -81,16 +82,21 @@ const Bio = styled.div`
   color: #808080;
 `;
 
+const userProfile = {
+  username: "BestCat_17",
+  fullName: "cat",
+  bio: "Hello, I am the best cat in the world!!!",
+  postsCount: 9,
+  followersCount: 100,
+  followingCount: 50,
+  profileImageURL: "/images/profile.jpg",
+};
+
 const MyProfile = () => {
-  const userProfile = {
-    username: "BestCat_17",
-    fullName: "cat",
-    bio: "Hello, I am the best cat in the world!!!",
-    postsCount: 15,
-    followersCount: 100,
-    followingCount: 50,
-    profileImageURL: "/images/profile.jpg",
-  };
+  //true 면 modal이 open 된다.
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  //변수 초기값
+  //열려 있으면 true, 닫혀있으면 false
 
   const ProfileInfo = ({ userProfile }) => (
     <div style={{ textAlign: "left", fontSize: "15px" }}>
@@ -125,11 +131,19 @@ const MyProfile = () => {
     <MainLayout>
       <Container>
         <ProfileWrapper>
-          <ProfileImage src={userProfile.profileImageURL} alt="User Profile" />
+          <ProfileImage
+            onClick={() => setIsModalOpen(true)}
+            src={userProfile.profileImageURL}
+            alt="User Profile"
+          />
           <ProfileInfo userProfile={userProfile} />
         </ProfileWrapper>
         <Divider />
       </Container>
+      {isModalOpen ? <Modal setIsModalOpen={setIsModalOpen} /> : null}
+
+      {/* //setIsModalOpen prop 으로 전달 //삼항연산자 */}
+      {/* true 일때만 렌더링 되게함 */}
     </MainLayout>
   );
 };

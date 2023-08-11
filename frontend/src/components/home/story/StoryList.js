@@ -17,68 +17,62 @@ function StoryList() {
 
         <StoryListBox>
           <StoryListImgBox>
-            <StoryListImg src='./images/jisu.jpeg' />
+            <StoryListImg src='./images/nam.jpeg' />
           </StoryListImgBox>
           <StoryListUsername>
-            Jisu
+            nam
+          </StoryListUsername>
+        </StoryListBox>
+        <StoryListBox>
+          <StoryListImgBox>
+            <StoryListImg src='./images/jo.jpeg' />
+          </StoryListImgBox>
+          <StoryListUsername>
+            jo
+          </StoryListUsername>
+        </StoryListBox>
+        <StoryListBox>
+          <StoryListImgBox>
+            <StoryListImg src='./images/gd.jpeg' />
+          </StoryListImgBox>
+          <StoryListUsername>
+            GD
+          </StoryListUsername>
+        </StoryListBox>
+        <StoryListBox>
+          <StoryListImgBox>
+            <StoryListImg src='./images/profile.jpg' />
+          </StoryListImgBox>
+          <StoryListUsername>
+            cat
+          </StoryListUsername>
+        </StoryListBox>
+        <StoryListBox>
+          <StoryListImgBox>
+            <StoryListImg src='./images/고양이4.jpg' />
+          </StoryListImgBox>
+          <StoryListUsername>
+            inger
           </StoryListUsername>
         </StoryListBox>
 
         <StoryListBox>
           <StoryListImgBox>
-            <StoryListImg src='./images/jisu.jpeg' />
+            <StoryListImg src='./images/고양이5.jpg' />
           </StoryListImgBox>
           <StoryListUsername>
-            Jisu
+            cati
           </StoryListUsername>
         </StoryListBox>
 
         <StoryListBox>
           <StoryListImgBox>
-            <StoryListImg src='./images/jisu.jpeg' />
+            <StoryListImg src='./images/고양이6.jpg' />
           </StoryListImgBox>
           <StoryListUsername>
-            Jisu
+            jermi
           </StoryListUsername>
         </StoryListBox>
-
-        <StoryListBox>
-          <StoryListImgBox>
-            <StoryListImg src='./images/jisu.jpeg' />
-          </StoryListImgBox>
-          <StoryListUsername>
-            Jisu
-          </StoryListUsername>
-        </StoryListBox>
-
-        <StoryListBox>
-          <StoryListImgBox>
-            <StoryListImg src='./images/jisu.jpeg' />
-          </StoryListImgBox>
-          <StoryListUsername>
-            Jisu
-          </StoryListUsername>
-        </StoryListBox>
-
-        <StoryListBox>
-          <StoryListImgBox>
-            <StoryListImg src='./images/jisu.jpeg' />
-          </StoryListImgBox>
-          <StoryListUsername>
-            Jisu
-          </StoryListUsername>
-        </StoryListBox>
-
-        <StoryListBox>
-          <StoryListImgBox>
-            <StoryListImg src='./images/jisu.jpeg' />
-          </StoryListImgBox>
-          <StoryListUsername>
-            Jisu
-          </StoryListUsername>
-        </StoryListBox>
-
-
       </StoryListWrap>
     </Container>
   );

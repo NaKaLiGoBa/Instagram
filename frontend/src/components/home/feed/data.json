@@ -28,11 +28,11 @@
   {
     "postId": 2,
     "username": "choi_zero",
-    "profile_image": "./images/gd.jpeg",
+    "profile_image": "./images/고양이8.jpg",
     "photos": [
       {
         "id": 1,
-        "url": "./images/gd.jpeg"
+        "url": "./images/고양이8.jpg"
       },
       {
         "id": 2,

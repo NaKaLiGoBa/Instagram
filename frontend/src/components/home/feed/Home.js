@@ -18,8 +18,6 @@ import styled from 'styled-components';
 import { useInView } from 'react-intersection-observer';
 import { Carousel } from 'react-responsive-carousel';
 
-import FeedCheck from './FeedCheck';
-
 // icon, dummy, css
 import { AiOutlineHeart } from "react-icons/ai";
 import { FaRegComment } from "react-icons/fa";
@@ -28,20 +26,18 @@ import { BiBookmark } from "react-icons/bi";
 
 import data from './data.json';
 
-import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
+import "react-responsive-carousel/lib/styles/carousel.min.css";
 import DetailFeed from './DetailFeed';
 
 function Home() {
   const [feedList, setFeedList] = useState(data);
-  const [page, setPage] = useState(0);
   const { ref, inView } = useInView();
 
   useEffect(() => {
     if (inView) {
-      // setPage(page + 1)
       var timeCurrent = setTimeout(() =>
         handleOnLimitScroll()
-        , 2000);
+        , 500);
     };
 
     return () => { clearTimeout(timeCurrent); }
@@ -53,11 +49,11 @@ function Home() {
       {
         postId: 4,
         username: "mintmin",
-        profile_image: "./images/jisu.jpeg",
+        profile_image: "./images/nam.jpeg",
         photos: [
           {
             id: 1,
-            url: "./images/gd.jpeg"
+            url: "./images/nam.jpeg"
           },
           {
             id: 2,
@@ -73,8 +69,8 @@ function Home() {
           "./images/gd.jpeg",
           "./images/jo.jpeg"
         ],
-        content: "지수님의 신곡을 응원합니다.",
-        comments: 20
+        content: "오늘 촬영 끝",
+        comments: 200
       },
       ]
     );
@@ -161,14 +157,8 @@ function Home() {
             );
           })
         }
-        {/* {
-          page === 0 && (
-            <FeedCheck />
-          )} */}
       </FeedWrap>
-
       <FeedLoadingBox ref={ref}>loading</FeedLoadingBox>
-
     </Container>
   );
 };
@@ -364,8 +354,8 @@ const FeedBottomCommentInput = styled.input`
 `;
 
 const FeedLoadingBox = styled.div`
-  width: 468px;
-  height: 30px;
+  width: 100%;
+  height: 50px;
   display: flex;
   justify-content: center;
   align-items: center;

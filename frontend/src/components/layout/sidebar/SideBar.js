@@ -29,6 +29,10 @@ const Container = styled.nav`
   justify-content: center;
   border-right: solid 1px #D8D8D8;
   position: fixed;
+
+  @media screen and (max-width: 900px) {
+    display: none;
+  };
 `;
 
 const SideWrap = styled.div`

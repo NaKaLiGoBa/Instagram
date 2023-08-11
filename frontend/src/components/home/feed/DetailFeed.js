@@ -42,10 +42,8 @@ function DetailFeed({ comments }) {
               <ProfileUsername>mintmin0320</ProfileUsername>
             </WriterInfoBox>
             <CommentList>
-              dsa
             </CommentList>
             <DetailInfoBox>
-
             </DetailInfoBox>
           </CommentBox>
         </Box>
