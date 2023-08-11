@@ -81,7 +81,7 @@ $ npm build
 
 ### run
 ```bash
-$ num start
+$ npm start
 ```
 
 
