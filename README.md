@@ -18,7 +18,13 @@
 # 📚 기술 스택
 ## Frontend
 <div>
-    <img src="https://img.shields.io/badge/표시할이름-색상?style=for-the-badge&logo=기술스택아이콘&logoColor=white">
+    <img src="https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=JavaScript&logoColor=white">
+    <img src="https://img.shields.io/badge/React 18.2.0-61DAFB?style=for-the-badge&logo=React&logoColor=white">
+    <img src="https://img.shields.io/badge/React Router 6.14.2-CA4245?style=for-the-badge&logo=React Router&logoColor=white">
+    <img src="https://img.shields.io/badge/Axios 1.4.0-5A29E4?style=for-the-badge&logo=Axios&logoColor=white">
+    <img src="https://img.shields.io/badge/styled-components 6.0.7-DB7093?style=for-the-badge&logo=styled-components&logoColor=white">
+
+    
 </div>
 
 ## Backend
@@ -40,6 +46,7 @@
   <img src="https://img.shields.io/badge/Figma-F24E1E?style=for-the-badge&logo=figma&logoColor=white">
   <img src="https://img.shields.io/badge/Notion-000000?style=for-the-badge&logo=notion&logoColor=white">
   <img src="https://img.shields.io/badge/Intellij-000000?style=for-the-badge&logo=Intellij-IDEA&logoColor=white">
+  <img src="https://img.shields.io/badge/Visual Studio Code-007ACC?style=for-the-badge&logo=Visual Studio Code&logoColor=white">
 </div>
 
 # ✍️ 테크니컬 리뷰
