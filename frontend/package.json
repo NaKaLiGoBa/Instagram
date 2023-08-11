@@ -1,5 +1,6 @@
 {
   "name": "frontend",
+  "homepage": " https://mintmin0320.github.io/Instagram/",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -18,7 +19,8 @@
     "react-router-dom": "^6.14.2",
     "react-scripts": "5.0.1",
     "styled-components": "^6.0.7",
-    "web-vitals": "^2.1.4"
+    "web-vitals": "^2.1.4",
+    "gh-pages": "^5.0.0"
   },
   "scripts": {
     "start": "react-scripts start",
