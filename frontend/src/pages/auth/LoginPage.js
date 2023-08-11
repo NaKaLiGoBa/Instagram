@@ -10,7 +10,7 @@ import {
 import { styled } from "@mui/material";
 import axios from "axios";
 import { Link } from "react-router-dom";
-import Footer from "../../components/home/Footer";
+import Footer from "../../components/layout/Footer";
 
 const FormContainer = styled(Container)({
   display: "flex",
@@ -39,12 +39,12 @@ const LogoImage = styled("img")({
 });
 
 function LoginPage() {
-  const [email, setEmail] = useState("");
+  const [id, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
   const handleEmailChange = (e) => {
     setEmail(e.target.value);
-    console.log(email);
+    console.log(IDBDatabase);
   };
 
   const handlePasswordChange = (e) => {
@@ -56,10 +56,11 @@ function LoginPage() {
 
     // axios를 사용하여 서버로 POST 요청을 보냅니다.
     axios
-      .post("/api/v1/auth/signin", {
-        email,
-        password,
-      })
+      .post(
+        "http://localhost:8080/api/v1/auth/signin",
+        { id, password },
+        { withCredentials: true }
+      )
       .then((res) => {
         // 서버로부터 받은 응답을 처리하는 로직을 작성합니다.(조건문)
         console.log("서버 응답:", res.data);
@@ -87,7 +88,7 @@ function LoginPage() {
           label="Email or username"
           variant="outlined"
           fullWidth
-          value={email}
+          value={id}
           onChange={handleEmailChange}
         />
         <StyledTextField
