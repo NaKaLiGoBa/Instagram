@@ -116,7 +116,7 @@ function RegisterPage() {
       }}
     >
       <FormContainer onSubmit={handleSubmit}>
-        <LogoImage src="/images/instagram-new-logo.png" alt="Instagram Logo" />
+        <LogoImage src="./images/instagram-new-logo.png" alt="Instagram Logo" />
 
         <StyledTextField
           label="Email"

@@ -89,7 +89,7 @@ const userProfile = {
   postsCount: 9,
   followersCount: 100,
   followingCount: 50,
-  profileImageURL: "/images/profile.jpg",
+  profileImageURL: "./images/profile.jpg",
 };
 
 const MyProfile = () => {
