@@ -82,7 +82,7 @@ function LoginPage() {
       }}
     >
       <FormContainer onSubmit={handleSubmit}>
-        <LogoImage src="/images/instagram-new-logo.png" alt="Instagram Logo" />
+        <LogoImage src="./images/instagram-new-logo.png" alt="Instagram Logo" />
 
         <StyledTextField
           label="Email or username"
@@ -104,7 +104,7 @@ function LoginPage() {
           color="primary"
           fullWidth
           onClick={handleSubmit}
-          // type="submit"
+        // type="submit"
         >
           Log In
         </StyledButton>

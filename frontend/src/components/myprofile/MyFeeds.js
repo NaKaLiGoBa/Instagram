@@ -48,15 +48,15 @@ const Icon = styled.i`
 
 const MyFeeds = () => {
   const dummyimages = [
-    "/images/고양이1.png",
-    "/images/고양이2.jpg",
-    "/images/고양이3.jpg",
-    "/images/고양이4.jpg",
-    "/images/고양이5.jpg",
-    "/images/고양이6.jpg",
-    "/images/고양이7.jpg",
-    "/images/고양이8.jpg",
-    "/images/고양이9.jpg",
+    "./images/고양이1.png",
+    "./images/고양이2.jpg",
+    "./images/고양이3.jpg",
+    "./images/고양이4.jpg",
+    "./images/고양이5.jpg",
+    "./images/고양이6.jpg",
+    "./images/고양이7.jpg",
+    "./images/고양이8.jpg",
+    "./images/고양이9.jpg",
   ];
 
   const [images, setImages] = useState(dummyimages); // 이미지들을 상태로 관리
