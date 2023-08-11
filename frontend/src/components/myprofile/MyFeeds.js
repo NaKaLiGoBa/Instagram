@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
-import Footer from "../home/Footer";
+import Footer from "../layout/Footer";
 import axios from "axios";
 
 const FeedsContainer = styled.div`
@@ -24,7 +24,7 @@ const FeedImage = styled.img`
   left: 0;
   width: 100%;
   height: 100%;
-  object-fit: cover; // 이미지가 비율을 유지하면서 채워집니다.
+  object-fit: cover; // 이미지가 비율을 유지하면서 채워짐.
 `;
 
 const TabsContainer = styled.div`

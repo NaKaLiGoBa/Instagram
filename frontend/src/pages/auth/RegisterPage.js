@@ -10,7 +10,7 @@ import {
 import { styled } from "@mui/material";
 import axios from "axios";
 import { Link } from "react-router-dom";
-import Footer from "../../components/home/Footer";
+import Footer from "../../components/layout/Footer";
 
 const FormContainer = styled(Container)({
   display: "flex",
@@ -70,7 +70,7 @@ function RegisterPage() {
 
     // axios를 사용하여 서버로 POST 요청을 보냅니다.
     axios
-      .post("/api/v1/auth/signin", {
+      .post("http://localhost:8080/api/v1/users/signup", {
         email,
         password,
         fullname,
