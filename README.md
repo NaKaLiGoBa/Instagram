@@ -23,8 +23,8 @@
     <img src="https://img.shields.io/badge/React Router 6.14.2-CA4245?style=for-the-badge&logo=React Router&logoColor=white">
     <img src="https://img.shields.io/badge/Axios 1.4.0-5A29E4?style=for-the-badge&logo=Axios&logoColor=white">
     <img src="https://img.shields.io/badge/styled-components 6.0.7-DB7093?style=for-the-badge&logo=styled-components&logoColor=white">
+    <img src="https://img.shields.io/badge/Mui 5.14.3-007FFF?style=for-the-badge&logo=Mui&logoColor=white">
 
-    
 </div>
 
 ## Backend
