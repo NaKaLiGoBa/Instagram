@@ -1,13 +1,15 @@
 package com.nakaligoba.backend.controller;
 
 import com.nakaligoba.backend.service.ProfileService;
-import com.nakaligoba.backend.service.ProfileService.ProfileDto;
+import com.nakaligoba.backend.service.ProfileService.*;
 import lombok.Builder;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+
+import java.util.List;
 
 
 @RequestMapping("/api/v1/users")
@@ -25,6 +27,8 @@ public class ProfileController {
         return ProfileResponse.builder()
                 .username(profile.getUsername())
                 .description(profile.getDescription())
+                .imageUrl(profile.getImageUrl())
+                .posts(profile.getPosts())
                 .build();
     }
 
@@ -65,27 +69,19 @@ public class ProfileController {
     }
 
     @Data
+    @Builder
     static class ProfileResponse {
         private String username;
         private String description;
-
-        @Builder
-        public ProfileResponse(String username, String description) {
-            this.username = username;
-            this.description = description;
-        }
+        private String imageUrl;
+        private List<UserPostDto> posts;
     }
 
     @Data
+    @Builder
     public static class ProfileRequest {
         private String username;
         private String description;
-
-        @Builder
-        public ProfileRequest(String username, String description) {
-            this.username = username;
-            this.description = description;
-        }
     }
 
 }
