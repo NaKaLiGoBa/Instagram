@@ -35,11 +35,11 @@ function Recommend() {
       </RecommendTextBox>
       <RecommendFollowListBox>
         <RecommendFollowList>
-          <RecommendFollowProfile src='./images/jisu.jpeg' />
+          <RecommendFollowProfile src='./images/고양이1.png' />
           <RecommendFollowInfoBox>
             <RecommendFollowTextBox>
               <RecommendFollowUsername>
-                김철수
+                tass
               </RecommendFollowUsername>
               <RecommendFollowTogetherList>
                 zero님, si님이 팔로우합니다
@@ -48,16 +48,14 @@ function Recommend() {
             <RecommendFollowBtn>
               팔로우
             </RecommendFollowBtn>
-
           </RecommendFollowInfoBox>
         </RecommendFollowList>
-
         <RecommendFollowList>
-          <RecommendFollowProfile src='./images/jisu.jpeg' />
+          <RecommendFollowProfile src='./images/고양이2.jpg' />
           <RecommendFollowInfoBox>
             <RecommendFollowTextBox>
               <RecommendFollowUsername>
-                김철수
+                caca5
               </RecommendFollowUsername>
               <RecommendFollowTogetherList>
                 zero님, si님이 팔로우합니다
@@ -66,16 +64,14 @@ function Recommend() {
             <RecommendFollowBtn>
               팔로우
             </RecommendFollowBtn>
-
           </RecommendFollowInfoBox>
         </RecommendFollowList>
-
         <RecommendFollowList>
-          <RecommendFollowProfile src='./images/jisu.jpeg' />
+          <RecommendFollowProfile src='./images/고양이3.jpg' />
           <RecommendFollowInfoBox>
             <RecommendFollowTextBox>
               <RecommendFollowUsername>
-                김철수
+                gugu_tiger
               </RecommendFollowUsername>
               <RecommendFollowTogetherList>
                 zero님, si님이 팔로우합니다
@@ -84,16 +80,14 @@ function Recommend() {
             <RecommendFollowBtn>
               팔로우
             </RecommendFollowBtn>
-
           </RecommendFollowInfoBox>
         </RecommendFollowList>
-
         <RecommendFollowList>
-          <RecommendFollowProfile src='./images/jisu.jpeg' />
+          <RecommendFollowProfile src='./images/고양이9.jpg' />
           <RecommendFollowInfoBox>
             <RecommendFollowTextBox>
               <RecommendFollowUsername>
-                김철수
+                susu_cold
               </RecommendFollowUsername>
               <RecommendFollowTogetherList>
                 zero님, si님이 팔로우합니다
@@ -102,16 +96,14 @@ function Recommend() {
             <RecommendFollowBtn>
               팔로우
             </RecommendFollowBtn>
-
           </RecommendFollowInfoBox>
         </RecommendFollowList>
-
         <RecommendFollowList>
-          <RecommendFollowProfile src='./images/jisu.jpeg' />
+          <RecommendFollowProfile src='./images/고양이8.jpg' />
           <RecommendFollowInfoBox>
             <RecommendFollowTextBox>
               <RecommendFollowUsername>
-                김철수
+                cat99
               </RecommendFollowUsername>
               <RecommendFollowTogetherList>
                 zero님, si님이 팔로우합니다
@@ -140,6 +132,10 @@ const Container = styled.div`
   height: 480px;
   padding-top: 40px;
   padding-left: 10px;
+
+  @media screen and (max-width: 900px) {
+    display: none;
+  };
 `;
 
 const RecommendUserInfoBox = styled.div`
